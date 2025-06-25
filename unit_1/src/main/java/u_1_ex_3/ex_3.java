@@ -1,4 +1,4 @@
-package u_2_ex_3;
+package u_1_ex_3;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,7 +15,7 @@ public class ex_8 {
             String temp_line = scanner.nextLine();
             char symbol = temp_line.charAt(0);
 
-            if(Character.getNumericValue(symbol) < 10 | Character.getNumericValue(symbol) > 35){
+            if(Character.getNumericValue(symbol) < 10 || Character.getNumericValue(symbol) > 35){
                 System.out.println("Некорректное значение!");
                 continue;
             }

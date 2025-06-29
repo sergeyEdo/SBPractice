@@ -1,6 +1,6 @@
 package u_2_ex_1;
 
-public class ex_1 {
+public class Ex_1 {
     public static void main(String[] args) {
         Phone phone1 = new Phone();
         phone1.weight = 1;

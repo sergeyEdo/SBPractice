@@ -20,4 +20,3 @@ public class Ex_1 {
         System.out.println(phone2.toString());
     }
 }
-

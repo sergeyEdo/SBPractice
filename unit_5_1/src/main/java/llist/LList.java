@@ -96,9 +96,6 @@ public class LList {
         return size;
     }
 
-    private Node root;
-    private int size = 0;
-
     private class Node {
         Node next;
         Object val;
@@ -127,4 +124,7 @@ public class LList {
             return node;
         }
     }
+
+    private Node root;
+    private int size = 0;
 }

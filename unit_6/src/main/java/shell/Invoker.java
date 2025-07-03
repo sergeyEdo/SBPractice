@@ -2,26 +2,29 @@ package shell;
 
 import shell.commands.Command;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public final class Invoker {
     static public ArrayList<Command> commandList = new ArrayList<>();
 
-    public Invoker() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Class<?>[] clazzes = new Class<?>[]{
-                shell.commands.DateCommand.class,
-                shell.commands.TimeCommand.class,
-                shell.commands.PWDCommand.class,
-                shell.commands.ExitCommand.class,
-                shell.commands.HelpCommand.class
-        };
+    public Invoker(String packageName) throws
+            NoSuchMethodException,
+            InvocationTargetException,
+            InstantiationException,
+            IllegalAccessException,
+            IOException,
+            ClassNotFoundException {
+
+        Class<?>[] clazzes = PackageScannerUtil.getClasses(packageName);
 
         for (Class<?> clazz : clazzes) {
             if (clazz.isAnnotationPresent(CommandAnnotation.class)) {
                 CommandAnnotation annotation = clazz.getAnnotation(CommandAnnotation.class);
-                Command command = (Command) clazz.getDeclaredConstructor(String.class, String.class).newInstance(annotation.commandName(), annotation.commandDescription());
-                commandList.add(command);
+                Command command = (Command) clazz.getDeclaredConstructor(String.class, String.class)
+                        .newInstance(annotation.commandName(), annotation.commandDescription());
+                register(command);
             }
         }
     }
